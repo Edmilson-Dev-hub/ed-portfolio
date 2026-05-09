@@ -1,0 +1,561 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    /* Paleta de cores moderna inspirada na referência */
+    --cor-fundo: #090d16;
+    --cor-fundo-card: rgba(17, 25, 40, 0.65);
+    --cor-borda: rgba(255, 255, 255, 0.08);
+    --cor-borda-glow: rgba(0, 102, 255, 0.3);
+    
+    --azul-eletrico: #0066ff;
+    --azul-brilhante: #3b82f6;
+    --roxo-neon: #8b5cf6;
+    --roxo-escuro: #6d28d9;
+    
+    --texto-principal: #ffffff;
+    --texto-secundario: #94a3b8;
+    --texto-mutado: #64748b;
+    
+    --vidro: rgba(0, 102, 255, 0.05);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--texto-principal);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Efeitos de luz de fundo modernos (Glow) */
+body::before {
+    content: '';
+    position: fixed;
+    top: -10%;
+    left: 10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 10%;
+    right: 5%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Header & Navegação */
+header {
+    background: rgba(9, 13, 22, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cor-borda);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #ffffff, var(--azul-brilhante));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.menu a:hover {
+    color: var(--texto-principal);
+    text-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+}
+
+/* Nova Seção Hero (Sobre Mim à Esquerda, Foto à Direita) */
+.hero-section {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-tag {
+    color: var(--azul-brilhante);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.hero-nome {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #ffffff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    color: var(--texto-secundario);
+    margin-bottom: 2rem;
+}
+
+/* Caixa "Sobre Mim" integrada */
+.sobre-caixa {
+    background: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.sobre-titulo {
+    font-size: 1.5rem;
+    color: var(--texto-principal);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.sobre-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--azul-eletrico);
+    border-radius: 2px;
+}
+
+.sobre-paragrafo {
+    font-size: 1rem;
+    color: var(--texto-secundario);
+    line-height: 1.6;
+}
+
+/* Foto do Lado Direito Fora do Círculo com Degradê e Desfoque */
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foto-container {
+    position: relative;
+    border-radius: 24px;
+    padding: 10px; /* Cria o espaço do degradê */
+    background: linear-gradient(135deg, var(--azul-eletrico), var(--roxo-neon));
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.25);
+    animation: flutuar 6s ease-in-out infinite;
+    max-width: 320px;
+    width: 100%;
+}
+
+/* Efeito de desfoque sutil por trás da foto */
+.foto-container::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--azul-eletrico), var(--roxo-neon));
+    filter: blur(15px);
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.foto-perfil {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-radius: 18px; /* Fora do círculo, cantos apenas suavizados */
+    filter: contrast(1.05) brightness(0.95);
+    transition: filter 0.3s ease;
+}
+
+.foto-perfil:hover {
+    filter: contrast(1.1) brightness(1.05);
+}
+
+/* Seção de Skills */
+.skills-section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.secao-titulo-central {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.secao-subtitulo {
+    text-align: center;
+    color: var(--texto-secundario);
+    margin-bottom: 4rem;
+    font-size: 1rem;
+}
+
+/* Divisórias de Grupos de Skills */
+.skills-grupo-container {
+    margin-bottom: 4rem;
+}
+
+.skills-grupo-titulo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+    margin-bottom: 1.8rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid var(--azul-brilhante);
+}
+
+/* Grid de Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cor-borda-glow);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.1);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-icon {
+    font-size: 2rem;
+}
+
+.skill-info h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--texto-principal);
+}
+
+.skill-level {
+    font-size: 0.8rem;
+    color: var(--texto-secundario);
+    margin-top: 2px;
+}
+
+/* Barra de Progresso */
+.progress-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+.progress-label {
+    color: var(--texto-secundario);
+}
+
+.progress-percentage {
+    font-weight: 700;
+    color: var(--azul-brilhante);
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+/* Animação e Degradê das barras com as novas cores */
+.progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--azul-eletrico), var(--roxo-neon));
+    width: 0%;
+    transition: width 1s ease-in-out;
+}
+
+/* Projetos */
+.projetos {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.projetos-titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.projetos-caixa {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.projetos-card {
+    background: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.projetos-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--cor-borda-glow);
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+}
+
+.projetos-imagem {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.caixa-textos-projeto {
+    padding: 1.5rem;
+}
+
+.info-projetos {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.paragrafo-projetos {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Contato */
+.contato {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contato-titulo {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.formulario-contato {
+    max-width: 550px;
+    margin: 0 auto;
+    background: var(--cor-fundo-card);
+    border: 1px solid var(--cor-borda);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.grupo-form {
+    margin-bottom: 1.5rem;
+}
+
+.campo-form {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    color: var(--texto-principal);
+    border: 1px solid var(--cor-borda);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.campo-form:focus {
+    border-color: var(--azul-brilhante);
+    box-shadow: 0 0 12px rgba(0, 102, 255, 0.2);
+}
+
+.botao-form {
+    color: var(--texto-principal);
+    background: linear-gradient(135deg, var(--azul-eletrico), var(--roxo-neon));
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.botao-form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--cor-borda);
+    background: rgba(9, 13, 22, 0.9);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    color: var(--texto-mutado);
+    font-size: 0.85rem;
+}
+
+/* Scrollbar Customizado */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cor-fundo);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cor-borda-glow);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--azul-brilhante);
+}
+
+/* Animações */
+@keyframes flutuar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 968px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-right {
+        order: -1; /* Foto vai pro topo no celular */
+    }
+
+    .foto-container {
+        max-width: 250px;
+    }
+
+    .sobre-titulo::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-nome {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-nome {
+        font-size: 2.2rem;
+    }
+
+    .formulario-contato {
+        padding: 1.5rem;
+    }
+
+    .menu {
+        gap: 1rem;
+    }
+}
