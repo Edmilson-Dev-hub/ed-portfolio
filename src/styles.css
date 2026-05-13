@@ -204,33 +204,37 @@ nav {
 
 .foto-container {
     position: relative;
-    border-radius: 24px;
-    padding: 10px; /* Cria o espaço do degradê */
+    border-radius: 50%;
+    padding: 3px; /* Cria o espaço do degradê */
     background: linear-gradient(135deg, var(--azul-eletrico), var(--roxo-neon));
     box-shadow: 0 20px 40px rgba(0, 102, 255, 0.25);
     animation: flutuar 6s ease-in-out infinite;
     max-width: 320px;
     width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Efeito de desfoque sutil por trás da foto */
 .foto-container::before {
     content: '';
     position: absolute;
-    inset: -5px;
-    border-radius: 28px;
+    inset: -2px;
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--azul-eletrico), var(--roxo-neon));
     filter: blur(15px);
-    opacity: 0.6;
+    opacity: 0.5;
     z-index: -1;
 }
 
 .foto-perfil {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 18px; /* Fora do círculo, cantos apenas suavizados */
+    border-radius: 50%; /* Fora do círculo, cantos apenas suavizados */
     filter: contrast(1.05) brightness(0.95);
     transition: filter 0.3s ease;
 }
